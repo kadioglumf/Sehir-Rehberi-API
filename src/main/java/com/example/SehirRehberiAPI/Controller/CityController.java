@@ -40,10 +40,11 @@ public class CityController {
 
     @PostMapping("/users/{user_id}/cities/add")
     @ResponseBody
-    public void createCity(@RequestBody CityCreationRequestModel cityCreationRequestModel) {
+    public CityDetailRest createCity(@RequestBody CityCreationRequestModel cityCreationRequestModel) {
         ModelMapper mapper = new ModelMapper();
 
-        cityServiceImpl.createCity(mapper.map(cityCreationRequestModel,CityDto.class));
+        CityDto cityDto = cityServiceImpl.createCity(mapper.map(cityCreationRequestModel,CityDto.class));
+        return mapper.map(cityDto,CityDetailRest.class);
     }
 
 }

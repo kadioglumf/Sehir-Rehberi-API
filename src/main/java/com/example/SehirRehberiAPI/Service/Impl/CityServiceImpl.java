@@ -51,10 +51,11 @@ public class CityServiceImpl implements CityService {
         cityRepository.save(cityEntity);
     }
 
-    public void createCity(CityDto cityDto){
+    public CityDto createCity(CityDto cityDto){
         ModelMapper mapper = new ModelMapper();
 
-        cityRepository.save(mapper.map(cityDto,CityEntity.class));
+        CityEntity cityEntity = cityRepository.save(mapper.map(cityDto,CityEntity.class));
+        return mapper.map(cityEntity,CityDto.class);
     }
 
 }
