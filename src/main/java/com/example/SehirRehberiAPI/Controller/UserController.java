@@ -6,6 +6,7 @@ import com.example.SehirRehberiAPI.Model.request.UserDetailsRequestModel;
 import com.example.SehirRehberiAPI.Model.request.UserLoginRequestModel;
 import com.example.SehirRehberiAPI.Model.response.UserRest;
 import com.example.SehirRehberiAPI.Service.Impl.UserDetailsServiceImpl;
+import org.apache.coyote.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
