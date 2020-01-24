@@ -1,9 +1,11 @@
 package com.example.SehirRehberiAPI.Service.Impl;
 
 import com.example.SehirRehberiAPI.Entity.CityEntity;
+import com.example.SehirRehberiAPI.Model.response.ErrorMessages;
 import com.example.SehirRehberiAPI.Repository.CityRepository;
 import com.example.SehirRehberiAPI.Service.CityService;
 import com.example.SehirRehberiAPI.Model.response.CityRest;
+import com.example.SehirRehberiAPI.exceptions.UserServiceException;
 import com.example.SehirRehberiAPI.shared.Dto.CityDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +32,12 @@ public class CityServiceImpl implements CityService {
     @Override
     public CityDto getCityById(long id) {
         CityEntity cityEntity = cityRepository.findById(id);
-
+        if(cityEntity == null) throw new UserServiceException(ErrorMessages.ITEM_IS_NOT_FOUND.getErrorMessage());
         ModelMapper mapper = new ModelMapper();
 
         return mapper.map(cityEntity,CityDto.class);
+
+
     }
 
     @Override

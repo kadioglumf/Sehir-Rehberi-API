@@ -7,6 +7,7 @@ import com.example.SehirRehberiAPI.Model.request.UserLoginRequestModel;
 import com.example.SehirRehberiAPI.Model.response.UserRest;
 import com.example.SehirRehberiAPI.Service.Impl.UserDetailsServiceImpl;
 import org.apache.coyote.Response;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class UserController {
     private UserDetailsServiceImpl userDetailsService;
 
     @PostMapping(value = "/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserLoginRequestModel user) throws Exception {
+    public ResponseEntity<?> loginUser(@RequestBody UserLoginRequestModel user) throws Exception {
 
         UserDto userDto = userDetailsService.getUserByEmail(user.getEmail());
 
@@ -62,6 +63,18 @@ public class UserController {
                 .loadUserByUsername(returnValue.getEmail());
 
         returnValue.setToken(jwtTokenUtil.generateToken(userDetails));
+
+        return ResponseEntity.ok(returnValue);
+    }
+
+    @PutMapping(value = "/users/{user_id}")
+    public ResponseEntity<UserRest> updateUser(@RequestBody UserDetailsRequestModel user,@PathVariable long user_id){
+        ModelMapper mapper = new ModelMapper();
+
+        UserDto userDto = mapper.map(user,UserDto.class);
+        UserDto storedUser = userDetailsService.updateUser(user_id,userDto);
+
+        UserRest returnValue = mapper.map(storedUser,UserRest.class);
 
         return ResponseEntity.ok(returnValue);
     }

@@ -27,9 +27,6 @@ public class PhotoServiceImpl implements PhotoService {
     private PhotoRepository photoRepository;
 
     @Autowired
-    private CityRepository cityRepository;
-
-    @Autowired
     Cloudinary cloudinary;
 
     @Override
