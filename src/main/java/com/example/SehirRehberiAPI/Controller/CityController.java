@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(origins = "https://city-guide-01.herokuapp.com")
+@CrossOrigin(origins = "https://cityguiide.herokuapp.com")
 @RestController
 @RequestMapping
 public class CityController {

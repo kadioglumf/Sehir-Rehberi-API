@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "https://city-guide-01.herokuapp.com")
+@CrossOrigin(origins = "https://cityguiide.herokuapp.com")
 @RestController
 @RequestMapping
 public class PhotoController {
