@@ -56,9 +56,9 @@ public class PhotoServiceImpl implements PhotoService {
 
         File convertFile = convertMultiPartToFile(photoDto.getMultipartFile());
         if(convertFile.length() != 0) {
-
-            Map uploadResult = cloudinary.uploader().upload(convertFile, ObjectUtils.emptyMap());
             cloudinary.url().secure(true);
+            Map uploadResult = cloudinary.uploader().upload(convertFile, ObjectUtils.emptyMap());
+
             photoDto.setUrl(uploadResult.get("url").toString());
             photoDto.setPublicId(uploadResult.get("public_id").toString());
 
