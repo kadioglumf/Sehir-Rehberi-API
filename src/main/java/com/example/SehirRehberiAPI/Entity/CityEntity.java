@@ -15,7 +15,7 @@ public class CityEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false,length = 1000)
+    @Column(nullable = false,length = 300)
     private String description;
 
     @Column(nullable = false)
