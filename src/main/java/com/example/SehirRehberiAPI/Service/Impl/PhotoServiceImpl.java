@@ -1,6 +1,7 @@
 package com.example.SehirRehberiAPI.Service.Impl;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Url;
 import com.cloudinary.utils.ObjectUtils;
 import com.example.SehirRehberiAPI.Entity.PhotoEntity;
 import com.example.SehirRehberiAPI.Repository.CityRepository;
@@ -56,9 +57,9 @@ public class PhotoServiceImpl implements PhotoService {
 
         File convertFile = convertMultiPartToFile(photoDto.getMultipartFile());
         if(convertFile.length() != 0) {
-            cloudinary.url().secure(true);
-            Map uploadResult = cloudinary.uploader().upload(convertFile, ObjectUtils.emptyMap());
 
+            Map uploadResult = cloudinary.uploader().upload(convertFile, ObjectUtils.emptyMap());
+            //Url as = cloudinary.url().secure(true);
             photoDto.setUrl(uploadResult.get("url").toString());
             photoDto.setPublicId(uploadResult.get("public_id").toString());
 

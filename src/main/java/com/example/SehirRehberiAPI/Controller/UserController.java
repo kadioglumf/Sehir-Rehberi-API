@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "https://cityguiide.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
